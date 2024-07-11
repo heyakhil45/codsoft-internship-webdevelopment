@@ -1,23 +1,21 @@
-const toTop= document.querySelector(".back-top")
+const buttons= document.querySelectorAll("input[type='button']");
+const dispalyInput= document.getElementById("displayInput");
+const opeartion= document.getElementById("operation")
 
-window.addEventListener("scroll", () => {
-    if(pageYOffset > 75){
-        toTop.classList.add("active")
-    }else{
-        toTop.classList.remove("active")
-    }
+// opeartion.innerHTML= "test js22 2 "
+
+buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        if(btn.value == "="){
+            opeartion.innerHTML= dispalyInput.value
+            dispalyInput.value= eval(dispalyInput.value)
+        }else if(btn.value== "C"){
+            opeartion.innerHTML= ""
+            dispalyInput.value= ""
+        }else if(btn.value == "Del"){
+            dispalyInput.value= dispalyInput.value.slice(0, -1)
+        }else{
+            dispalyInput.value += btn.value;
+        }
+    })
 })
-
-const burger= document.querySelector(".burger")
-const sidebar= document.querySelector(".links")
-const links= document.querySelectorAll(".links li a")
-
-burger.addEventListener("click", toggleSidebar)
-
-links.forEach(link => {
-    link.addEventListener("click", toggleSidebar)
-})
-
-function toggleSidebar(){
-    sidebar.classList.toggle("show")
-}
